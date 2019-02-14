@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1010050014825",
+    "firebase_url": "https://nachbar-b5316.firebaseio.com",
+    "project_id": "nachbar-b5316",
+    "storage_bucket": "nachbar-b5316.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1010050014825:android:3aa3ecc86ab185f7",
+        "android_client_info": {
+          "package_name": "com.example.nachbar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1010050014825-101epahdqmfpo5p9ushpnpo6dh7o0ji7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_TWkm1uCj_3M4NJsUuykLEHVlPAqufk0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
