@@ -214,6 +214,7 @@ class _CreateNewServiceDialogState extends State<CreateNewServiceDialog>
                 'description': _descCtrl.text,
                 'images': '',
                 'price': _priceCtrl.text,
+                'ownerUid': '',
               }).then((_) async {
                 await _uploadImages(item.key, _imageFiles).then((links) async {
                   setState(() {
@@ -225,6 +226,7 @@ class _CreateNewServiceDialogState extends State<CreateNewServiceDialog>
                     'description': _descCtrl.text,
                     'images': links,
                     'price': _priceCtrl.text,
+                    'ownerUid': ownerUid
                   });
 
                   OfferItem newItem = new OfferItem(

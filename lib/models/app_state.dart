@@ -6,6 +6,8 @@ import 'package:web3dart/web3dart.dart';
 
 class AppState {
   bool isLoading;
+  bool showWalkthroughPage;
+
   FirebaseUser user;
   DatabaseReference database;
   Wallet wallet;
@@ -45,7 +47,7 @@ class AppState {
         });
       });
     } catch (e) {
-      print("wieder eine kack exception...");
+      print(" exception...");
       print(e.toString());
     }
 

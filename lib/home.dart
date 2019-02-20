@@ -22,8 +22,8 @@ class _HomePageState extends State<HomePage> {
   int accountBalance = 0;
 
   void initWallet() async {
-    var b = await MyWallet.getContractBalance(state.wallet.credentials);
-    //print(state.wallet.credentials.address.toString());
+    var b = await MyWallet.getContractBalance(state.wallet?.credentials);
+
     if (this.mounted) {
       setState(() {
         accountBalance = b;
@@ -135,7 +135,9 @@ class _HomePageState extends State<HomePage> {
     var container = AppStateContainer.of(context);
     state = container.state;
 
-    initWallet();
+    try {
+      initWallet();
+    } catch (e) {}
 
     return Scaffold(
       appBar: AppBar(

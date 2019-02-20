@@ -48,12 +48,13 @@ class _AppStateContainerState extends State<AppStateContainer> {
 
   signOut() async {
     if (state.user != null) {
-      await _firebaseAuth.signOut();
-
-      setState(() {
-        state.isLoading = false;
-        state.user = null;
-        state.wallet = null;
+      await _firebaseAuth.signOut().then((_) {
+        setState(() {
+          state.isLoading = false;
+          state.user = null;
+          state.wallet = null;
+          state.database = null;
+        });
       });
     }
   }
