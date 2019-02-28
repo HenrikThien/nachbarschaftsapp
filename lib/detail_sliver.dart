@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:carousel_pro/carousel_pro.dart';
-import 'package:flutter_images_slider/flutter_images_slider.dart';
 import 'package:nachbar/app_state_container.dart';
 import 'package:nachbar/models/app_state.dart';
 import 'package:nachbar/models/offer_item.dart';
@@ -279,9 +278,10 @@ class _DetailSliverPageState extends State<DetailSliverPage> {
                     tag: 'hero_${widget.offerItem.itemId}',
                     child: Carousel(
                       images: widget.offerItem.getNetworkImagesAsArray(),
+                      boxFit: BoxFit.cover,
                       showIndicator: false,
                       borderRadius: false,
-                      animationDuration: Duration(milliseconds: 500),
+                      animationDuration: Duration(milliseconds: 700),
                     ),
                   ),
                 ),

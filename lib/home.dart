@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:nachbar/app_state_container.dart';
 import 'package:nachbar/detail_sliver.dart';
 import 'package:nachbar/dialogs/new_service_dialog.dart';
+import 'package:nachbar/maps.dart';
 import 'package:nachbar/models/app_state.dart';
 import 'package:nachbar/all_items.dart';
 import 'package:nachbar/models/offer_item.dart';
@@ -142,7 +143,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-            child: Text('49767 Twist', style: TextStyle(color: Colors.white))),
+            child: Text(
+                '${state.location.postalcode} ${state.location.location}',
+                style: TextStyle(color: Colors.white))),
         automaticallyImplyLeading: false,
         elevation: 0.0,
         leading: IconButton(
@@ -150,7 +153,12 @@ class _HomePageState extends State<HomePage> {
             Icons.location_on,
             color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MapsPage()),
+            );
+          },
         ),
         actions: <Widget>[
           PopupMenuButton<PopUpActions>(
@@ -320,7 +328,7 @@ class _HomePageState extends State<HomePage> {
                   alignment: WrapAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      'Angebote in meiner Nähe',
+                      'Angebote in meiner Nähe (${state.location.location})',
                       style: Theme.of(context).textTheme.title,
                     ),
                   ],

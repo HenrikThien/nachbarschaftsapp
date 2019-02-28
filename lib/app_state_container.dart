@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:nachbar/models/app_location.dart';
 import 'package:nachbar/models/app_state.dart';
 import 'package:nachbar/util/my_wallet.dart';
 import 'package:web3dart/web3dart.dart';
@@ -50,6 +53,7 @@ class _AppStateContainerState extends State<AppStateContainer> {
     if (state.user != null) {
       await _firebaseAuth.signOut().then((_) {
         setState(() {
+          state.location = null;
           state.isLoading = false;
           state.user = null;
           state.wallet = null;
@@ -66,7 +70,10 @@ class _AppStateContainerState extends State<AppStateContainer> {
       var wallet = await getWallet(user.uid);
       var items = await state.getAllUserOffers(user?.uid);
 
+      var location = await state.loadCurrentLocation();
+
       setState(() {
+        state.location = location;
         state.isLoading = false;
         state.user = user;
         state.wallet = wallet;
@@ -87,7 +94,10 @@ class _AppStateContainerState extends State<AppStateContainer> {
       var wallet = await getWallet(user?.uid);
       var items = await state.getAllUserOffers(user?.uid);
 
+      var location = await state.loadCurrentLocation();
+
       setState(() {
+        state.location = location;
         state.isLoading = false;
         state.user = user;
         state.wallet = wallet;

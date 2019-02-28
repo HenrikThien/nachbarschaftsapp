@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nachbar/app_state_container.dart';
 import 'package:nachbar/home.dart';
+import 'package:nachbar/import_page.dart';
 import 'package:nachbar/login.dart';
 import 'dart:async';
 import 'package:nachbar/models/app_state.dart';
 import 'package:nachbar/walkthrough.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RootPage extends StatefulWidget {
@@ -18,13 +20,29 @@ class _RootPageState extends State<RootPage> {
   @override
   void initState() {
     super.initState();
+    //requestPermissions();
     loadPreferences();
+  }
+
+  void requestPermissions() async {
+    bool denied = false;
+
+    Map<PermissionGroup, PermissionStatus> permissions =
+        await PermissionHandler().requestPermissions(
+            [PermissionGroup.location, PermissionGroup.camera]);
+
+    permissions.forEach((key, value) {
+      if (value == PermissionStatus.denied) {
+        denied = true;
+      }
+    });
+    // SHOW error page, need these permissions!
   }
 
   Future loadPreferences() async {
     var prefs = await SharedPreferences.getInstance();
     final showWalkthrough = prefs.getBool('walkthrough') ?? true;
-    this.showWalkthroughPage = showWalkthrough;
+    setState(() => this.showWalkthroughPage = showWalkthrough);
   }
 
   Widget _pageToDisplay(var container) {
@@ -34,11 +52,23 @@ class _RootPageState extends State<RootPage> {
       return LoginPage();
     } else {
       if (state.user != null) {
-        if (this.state.showWalkthroughPage) {
-          return WalkthroughPage();
+        if (state.wallet == null) {
+          return ImportPage();
         } else {
-          return HomePage();
+          if (state.showWalkthroughPage) {
+            loadPreferences();
+
+            return WalkthroughPage(
+              onPageClose: () {
+                setState(() {
+                  state.showWalkthroughPage = false;
+                });
+              },
+            );
+          }
         }
+
+        return HomePage();
       }
 
       return _loadingView;

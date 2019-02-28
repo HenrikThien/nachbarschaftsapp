@@ -30,6 +30,12 @@ dependencies:
   firebase_storage: 1.0.4
   cached_network_image: ^0.5.1
   shared_preferences: 0.4.0
+  geolocator: ^3.0.0
+  geocoder: ^0.1.2
+  google_api_availability: 1.0.6 # Geolocator Dependency.
+  meta: 1.1.6 # Geolocator Dependency.
+  permission_handler: 2.2.0
+  google_maps_flutter: ^0.2.0+3
 
 dev_dependencies:
   flutter_test:

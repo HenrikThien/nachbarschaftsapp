@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -134,59 +135,6 @@ class _FormSelectorState extends State<FormSelector> {
             SizedBox(
               height: 10.0,
             ),
-            /*Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                RaisedButton(
-                  color: Colors.blueGrey,
-                  padding: EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        "Bilder auswählen",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      SizedBox(
-                        width: 5.0,
-                      ),
-                      Icon(
-                        Icons.file_upload,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                  onPressed: () {
-                    getImage(true);
-                  },
-                ),
-                RaisedButton(
-                  color: Colors.blueGrey,
-                  padding: EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        "Mit Kamera aufnehmen",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      SizedBox(
-                        width: 5.0,
-                      ),
-                      Icon(
-                        Icons.photo_camera,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                  onPressed: () {
-                    getImage(false);
-                  },
-                ),
-              ],
-            ),*/
             Wrap(
               spacing: 5.0,
               crossAxisAlignment: WrapCrossAlignment.center,

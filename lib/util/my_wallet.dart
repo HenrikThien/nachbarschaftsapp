@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'package:http/http.dart';
@@ -42,6 +43,19 @@ class MyWallet {
       Wallet wallet = Wallet.fromJson(content, _walletPassword);
       return wallet;
     } catch (e) {
+      return null;
+    }
+  }
+
+  static Future<Wallet> importWallet(String privateKey, String uid) async {
+    try {
+      Credentials fromHex = Credentials.fromPrivateKeyHex(privateKey);
+      var rng = new Random.secure();
+      Wallet wallet = Wallet.createNew(fromHex, _walletPassword, rng);
+      await writeJsonWallet(wallet.toJson(), uid);
+      return wallet;
+    } catch (e) {
+      print(e.toString());
       return null;
     }
   }
